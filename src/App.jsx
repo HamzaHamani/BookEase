@@ -8,7 +8,6 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
-// import { createClient } from "@supabase/supabase-js";
 
 import AppLayout from "./ui/AppLayout";
 function App() {
