@@ -9,6 +9,7 @@ function Cabins() {
     async function feF() {
       const data = await getCabins();
       console.log(data);
+      if (data.length == 0) return;
       return data;
     }
     feF();
