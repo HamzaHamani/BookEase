@@ -13,7 +13,7 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 60 * 100 } },
+  defaultOptions: { queries: { staleTime: 0 } },
 });
 function App() {
   return (
