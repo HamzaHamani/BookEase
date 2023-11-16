@@ -3,6 +3,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const TableRow = styled.div`
   display: grid;
@@ -55,17 +56,17 @@ function CabinRow({ cabin }) {
   const queryClient = useQueryClient();
 
   const { mutate, isLoading, status } = useMutation({
-    mutationFn: (id) => {
-      deleteCabin(id);
-    },
+    mutationFn: deleteCabin,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      toast.success("Cabin has been Deleted");
     },
     onError: (err) => {
-      alert(err.message);
+      toast.error(err.message);
     },
+    // TODO : handle error WHERE I CANT SHOW ERROR TOAST WHEN THERE IS AN ERROR
   });
-  console.log(status);
+  // console.log(status);
 
   const {
     id: cabinId,
@@ -82,8 +83,8 @@ function CabinRow({ cabin }) {
       <Capacity>Fits up to {maxCapacity} quests</Capacity>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button onClick={() => mutate(cabinId)}>
-        {status !== "success" ? "Delete" : "Deleting..."}
+      <button disabled={status == "success"} onClick={() => mutate(cabinId)}>
+        Delete{" "}
       </button>
     </TableRow>
   );
