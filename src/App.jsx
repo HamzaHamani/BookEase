@@ -37,7 +37,7 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
-        <Toaster richColors />{" "}
+        <Toaster position="top-center" richColors />{" "}
       </QueryClientProvider>
     </>
   );

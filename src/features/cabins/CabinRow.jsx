@@ -64,8 +64,8 @@ function CabinRow({ cabin }) {
     onError: (err) => {
       toast.error(err.message);
     },
-    // TODO : handle error WHERE I CANT SHOW ERROR TOAST WHEN THERE IS AN ERROR
   });
+  //#TODO change toast library to react hot toast
   // console.log(status);
 
   const {

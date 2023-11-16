@@ -12,16 +12,6 @@ export async function getCabins() {
 }
 
 export async function deleteCabin(id) {
-  // try {
-  //   const { error } = await supabase.from("cabins").delete().eq("id", id);
-  //   if (error) {
-  //     throw new Error("We couldnt delete the cabin from the database");
-  //   }
-
-  //   toast.success("Cabin has been Deleted");
-  // } catch (err) {
-  //   toast.error(err.message || "An error occurred.");
-  // }
   const { error } = await supabase.from("cabins").delete().eq("id", id);
   if (error) {
     throw new Error("We couldnt delete the cabin from the database");
