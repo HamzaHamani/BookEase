@@ -55,7 +55,7 @@ function CabinRow({ cabin }) {
   // const [deleting, setDeleting] = useState(false);
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading, status } = useMutation({
+  const { mutate, status } = useMutation({
     mutationFn: deleteCabin,
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["cabins"] });
@@ -68,6 +68,7 @@ function CabinRow({ cabin }) {
   //#TODO change toast library to react hot toast
   // console.log(status);
 
+  // console.log(status);
   const {
     id: cabinId,
     name,
@@ -83,8 +84,8 @@ function CabinRow({ cabin }) {
       <Capacity>Fits up to {maxCapacity} quests</Capacity>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button disabled={status == "success"} onClick={() => mutate(cabinId)}>
-        Delete{" "}
+      <button disabled={status == "pending"} onClick={() => mutate(cabinId)}>
+        {status == "pending" ? "Deleting..." : "Delete"}
       </button>
     </TableRow>
   );

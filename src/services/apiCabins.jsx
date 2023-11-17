@@ -12,10 +12,11 @@ export async function getCabins() {
 }
 
 export async function deleteCabin(id) {
-  const { error } = await supabase.from("cabins").delete().eq("id", id);
+  const { data, error } = await supabase.from("cabins").delete().eq("id", id);
   if (error) {
     throw new Error("We couldnt delete the cabin from the database");
   }
+  return data;
 }
 
 export async function createCabin(newCabin) {

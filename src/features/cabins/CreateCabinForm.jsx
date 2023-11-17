@@ -47,21 +47,24 @@ const Error = styled.span`
 `;
 
 function CreateCabinForm() {
-  const { mutate } = useMutation({
+  const query = useQueryClient();
+  const { register, handleSubmit, reset } = useForm();
+  const { mutate, status } = useMutation({
     mutationFn: createCabin,
     onSuccess: async () => {
       await query.invalidateQueries("cabins");
       toast.success("Cabin created");
+      reset();
+    },
+    onError: (err) => {
+      toast.error(err.message);
     },
   });
-  const query = useQueryClient();
-  const { register, handleSubmit } = useForm();
+
   async function submit(data) {
     mutate(data);
-    // await createCabin(data);
-    // query.invalidateQueries("cabins");
-    // alert(JSON.stringify(data));
   }
+  // TODO right notes in obsidian on how to create a cabin with supabase
   return (
     <Form onSubmit={handleSubmit(submit)}>
       <FormRow>
@@ -109,7 +112,9 @@ function CreateCabinForm() {
         <Button $variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Edit cabin</Button>
+        <Button disabled={status == "pending"}>
+          {status == "pending" ? "Editing..." : "Edit Cabin"}
+        </Button>
       </FormRow>
     </Form>
   );
