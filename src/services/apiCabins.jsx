@@ -20,6 +20,7 @@ export async function deleteCabin(id) {
 }
 
 export async function createCabin(newCabin) {
+  //#TODO there is an error when i try to add code for posting image in backet
   console.log(newCabin);
   const { data, error } = await supabase
     .from("cabins")
@@ -31,3 +32,21 @@ export async function createCabin(newCabin) {
   }
   return data;
 }
+
+// export async function createCabin(newCabin) {
+//   const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
+//     "/",
+//     ""
+//   );
+//   const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+//   console.log(newCabin);
+//   const { data, error } = await supabase
+//     .from("cabins")
+//     .insert([newCabin])
+//     .select();
+
+//   if (error) {
+//     throw new Error("We couldnt create the cabin in the database");
+//   }
+//   return data;
+// }
