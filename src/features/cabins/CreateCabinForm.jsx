@@ -8,34 +8,6 @@ import { createCabin } from "../../services/apiCabins";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import FormRow from "../../ui/FormRow";
-import styled from "styled-components";
-
-const FormRow2 = styled.div`
-  display: grid;
-  align-items: center;
-  grid-template-columns: 24rem 1fr 1.2fr;
-  gap: 2.4rem;
-
-  padding: 1.2rem 0;
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    padding-bottom: 0;
-  }
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
-  }
-
-  &:has(button) {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1.2rem;
-  }
-`;
 
 function CreateCabinForm() {
   const query = useQueryClient();
@@ -131,7 +103,11 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label={"Cabin photo"}>
-        <FileInput id="image" accept="image/*" {...register("image")} />
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image", { required: "this field is required" })}
+        />
       </FormRow>
 
       <FormRow>

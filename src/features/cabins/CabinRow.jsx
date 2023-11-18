@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
-import { useState } from "react";
 import { toast } from "sonner";
 
 const TableRow = styled.div`
@@ -69,14 +68,7 @@ function CabinRow({ cabin }) {
   // console.log(status);
 
   // console.log(status);
-  const {
-    id: cabinId,
-    name,
-    maxCapacity,
-    regularPrice,
-    discount,
-    image,
-  } = cabin;
+  const { name, maxCapacity, regularPrice, discount, image } = cabin;
   return (
     <TableRow role="row">
       <Img src={image} />
@@ -84,7 +76,7 @@ function CabinRow({ cabin }) {
       <Capacity>Fits up to {maxCapacity} quests</Capacity>
       <Price>{formatCurrency(regularPrice)}</Price>
       <Discount>{formatCurrency(discount)}</Discount>
-      <button disabled={status == "pending"} onClick={() => mutate(cabinId)}>
+      <button disabled={status == "pending"} onClick={() => mutate(cabin)}>
         {status == "pending" ? "Deleting..." : "Delete"}
       </button>
     </TableRow>
