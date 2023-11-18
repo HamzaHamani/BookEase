@@ -28,7 +28,7 @@ function CreateCabinForm() {
 
   async function onSubmit(data) {
     mutate({ ...data, image: data.image[0] });
-    // console.log(data);
+    // console.log(data.image[1]);
   }
 
   // TODO right notes in obsidian on how to create a cabin with supabase
@@ -102,7 +102,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label={"Cabin photo"}>
+      <FormRow label={"Cabin photo"} error={errors?.image?.message}>
         <FileInput
           id="image"
           accept="image/*"
