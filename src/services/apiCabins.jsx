@@ -27,8 +27,7 @@ export async function deleteCabin(cabin) {
   }
 
   //delete the image , i did it without jonas isntruction
-  console.log(cabin.image);
-  console.log(cabin.image.split("/").pop());
+
   const { error: deleteError } = await supabase.storage
     .from("cabin-images")
     .remove([cabin.image.split("/").pop()]);
