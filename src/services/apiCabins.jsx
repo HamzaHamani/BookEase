@@ -4,7 +4,10 @@ import { v4 as uuid } from "uuid";
 // import { useQueryClient } from "@tanstack/react-query";
 
 export async function getCabins() {
-  let { data, error } = await supabase.from("cabins").select("*");
+  let { data, error } = await supabase
+    .from("cabins")
+    .select("*")
+    .order("created_at", { ascending: true });
 
   if (error) {
     console.error(error);
@@ -24,7 +27,8 @@ export async function deleteCabin(cabin) {
   }
 
   //delete the image , i did it without jonas isntruction
-
+  console.log(cabin.image);
+  console.log(cabin.image.split("/").pop());
   const { error: deleteError } = await supabase.storage
     .from("cabin-images")
     .remove([cabin.image.split("/").pop()]);
@@ -34,16 +38,24 @@ export async function deleteCabin(cabin) {
   return data;
 }
 
-export async function createCabin(newCabin) {
-  //#TODO there is an error with code below of imageName return undefined
-  // console.log(newCabin);
+export async function createEditCabin(newCabin, id) {
+  // console.log(newCabin, id);
+  const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
 
   const imageName = `${uuid()}-${newCabin?.image?.name}`.replaceAll("/", "");
-  const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
-  const { data, error } = await supabase
-    .from("cabins")
-    .insert([{ ...newCabin, image: imagePath }])
-    .select();
+  const imagePath = hasImagePath
+    ? newCabin.image
+    : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+
+  //to create cabin
+  let query = supabase.from("cabins");
+
+  if (!id) query = query.insert([{ ...newCabin, image: imagePath }]);
+
+  //to edit ccabin
+  if (id) query = query?.update({ ...newCabin, image: imagePath }).eq("id", id);
+
+  const { data, error } = await query.select().single();
 
   if (error) {
     console.log(error);
