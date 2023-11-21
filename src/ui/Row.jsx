@@ -19,6 +19,6 @@ const Row = styled.div`
     `}
 `;
 
-Row.defaultProps = { type: "vetical" };
+Row.defaultProps = { type: "vertical" };
 
 export default Row;

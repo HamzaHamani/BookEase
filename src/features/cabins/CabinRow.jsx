@@ -2,7 +2,11 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import { useState } from "react";
 import CreateCabinForm from "./CreateCabinForm";
+import { HiPencil, HiTrash } from "react-icons/hi";
+import { HiSquare2Stack } from "react-icons/hi2";
+
 import { useDeleteCabin } from "./useDeleteCabin";
+import { useCreateCabin } from "./useCreateCabin";
 
 const TableRow = styled.div`
   display: grid;
@@ -52,13 +56,23 @@ const Capacity = styled.div`
 
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
-  // const [deleting, setDeleting] = useState(false);
-  const { status, deleteCabin } = useDeleteCabin();
-  //#TODO change toast library to react hot toast
-  // console.log(status);
 
-  // console.log(status);
-  const { name, maxCapacity, regularPrice, discount, image } = cabin;
+  const { createCabin, status: createStatus } = useCreateCabin();
+  const { status, deleteCabin } = useDeleteCabin();
+
+  const { name, maxCapacity, regularPrice, discount, image, description } =
+    cabin;
+
+  function handleDuplicate() {
+    createCabin({
+      name: `Copy of ${cabin.name}`,
+      description,
+      maxCapacity,
+      regularPrice,
+      discount,
+      image,
+    });
+  }
   return (
     <>
       <TableRow role="row">
@@ -73,12 +87,20 @@ function CabinRow({ cabin }) {
         )}
 
         <div>
-          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+          <button
+            disabled={createStatus == "pending"}
+            onClick={handleDuplicate}
+          >
+            <HiSquare2Stack />
+          </button>
+          <button onClick={() => setShowForm((show) => !show)}>
+            <HiPencil />
+          </button>
           <button
             disabled={status == "pending"}
             onClick={() => deleteCabin(cabin)}
           >
-            {status == "pending" ? "Deleting..." : "Delete"}
+            <HiTrash />
           </button>
         </div>
       </TableRow>
