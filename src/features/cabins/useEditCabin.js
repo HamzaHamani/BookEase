@@ -10,6 +10,7 @@ function useEditCabin() {
     onSuccess: async () => {
       await query.invalidateQueries("cabins");
       toast.success("Cabin successfully edited");
+      // onCloseModal?.();
     },
     onError: (err) => {
       toast.error(err.message);
