@@ -14,7 +14,7 @@ function UpdateSettingsForm() {
       breakfastPrice,
     } = {},
     isLoading,
-  } = useSettings();
+  } = useSettings();  
   function handleUpdate(e, field) {
     const { value } = e.target;
     if (!value) return;
