@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
 import CreateCabinForm from "./CreateCabinForm";
 
-import Modal from "../../ui/Modal";
-import { useCreateCabin } from "./useCreateCabin";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { useDeleteCabin } from "./useDeleteCabin";
-import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Modal from "../../ui/Modal";
+import Table from "../../ui/Table";
+import { useCreateCabin } from "./useCreateCabin";
+import { useDeleteCabin } from "./useDeleteCabin";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -59,6 +59,7 @@ const Capacity = styled.div`
 
 function CabinRow({ cabin }) {
   const { createCabin, status: createStatus } = useCreateCabin();
+  createStatus;
   const { status, deleteCabin } = useDeleteCabin();
 
   const { name, maxCapacity, regularPrice, discount, image, description } =
