@@ -45,7 +45,7 @@ function CabinTable() {
   const sortedCabins = filteredCabins?.sort(
     (a, b) => (a[field] - b[field]) * modifier
   );
-  if (!cabins.length) return <Empty resource="Cabins" />;
+  if (!cabins?.length) return <Empty resource="Cabins" />;
   if (isLoading) return <Spinner />;
   return (
     <Menus>
