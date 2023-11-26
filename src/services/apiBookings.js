@@ -16,11 +16,12 @@ export async function getBookings({ filter, sortBy }) {
       ascending: sortBy.direction === "asc",
     });
 
-  const { data, error } = await query;
+  const { data, error, count } = await query;
   if (error) {
     console.error(error);
     throw new Error("Bookings could not be loaded");
   }
+  console.log(data, count);
   return data;
 }
 
