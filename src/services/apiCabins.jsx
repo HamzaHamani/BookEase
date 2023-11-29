@@ -23,6 +23,7 @@ export async function deleteCabin(cabin) {
     .delete()
     .eq("id", cabin.id);
   if (error) {
+    console.error(error);
     throw new Error("We couldnt delete the cabin from the database");
   }
 
