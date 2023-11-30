@@ -24,7 +24,7 @@ export async function deleteCabin(cabin) {
     .eq("id", cabin.id);
   if (error) {
     console.error(error);
-    throw new Error("We couldnt delete the cabin from the database");
+    throw new Error("We couldnt delete the cabin it may have reservations");
   }
 
   //delete the image , i did it without jonas isntruction
