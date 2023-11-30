@@ -69,7 +69,7 @@ function BookingRow({
   };
 
   const navigate = useNavigate();
-  const { deleteBooking } = useDeleteBooking();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const { checkOut, isCheckingOut } = useCheckout();
 
@@ -132,6 +132,7 @@ function BookingRow({
 
         <Modal.Window name={"delete"}>
           <ConfirmDelete
+            disabled={isDeleting}
             resourceName="booking"
             onConfirm={() => deleteBooking(bookingId)}
           />
