@@ -21,3 +21,13 @@ export async function getCurrentUser() {
   return data?.user;
 }
 // console.log(supabase);
+
+export async function logoutApi() {
+  console.log("logout");
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+}
