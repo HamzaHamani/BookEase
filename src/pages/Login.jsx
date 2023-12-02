@@ -3,6 +3,7 @@ import LoginForm from "../features/authentication/LoginForm";
 import Heading from "../ui/Heading";
 import Logo from "../ui/Logo";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../features/authentication/useUser";
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -15,7 +16,10 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
+  const { isAuthenticated } = useUser();
   const navigate = useNavigate();
+  if (isAuthenticated) navigate("/");
+
   return (
     <LoginLayout>
       <Logo />
