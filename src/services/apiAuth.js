@@ -23,7 +23,7 @@ export async function getCurrentUser() {
 // console.log(supabase);
 
 export async function logoutApi() {
-  console.log("logout");
+  // console.log("logout");
   const { error } = await supabase.auth.signOut();
 
   if (error) {
