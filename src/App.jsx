@@ -15,6 +15,8 @@ import AppLayout from "./ui/AppLayout";
 import { Toaster } from "sonner";
 import BookingPage from "./pages/BookingPage";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Signup from "./pages/Signup";
+import Redirect from "./pages/Redirect";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 0 } },
@@ -45,6 +47,9 @@ function App() {
               <Route path="account" element={<Account />} />
             </Route>
             <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="redirect" element={<Redirect />} />
+
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
