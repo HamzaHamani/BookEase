@@ -27,6 +27,7 @@ function SignupForm() {
         <Input
           type="text"
           id="fullName"
+          disabled={status == "pending"}
           {...register("fullName", { required: "This field is required" })}
         />
       </FormRow>
@@ -35,6 +36,7 @@ function SignupForm() {
         <Input
           type="email"
           id="email"
+          disabled={status == "pending"}
           {...register("email", {
             required: "This field is required",
             pattern: {
@@ -51,6 +53,7 @@ function SignupForm() {
       >
         <Input
           type="password"
+          disabled={status == "pending"}
           id="password"
           {...register("password", {
             required: "This field is required",
@@ -65,6 +68,7 @@ function SignupForm() {
       <FormRow label="Repeat password" error={errors?.passwordConfirm?.message}>
         <Input
           type="password"
+          disabled={status == "pending"}
           id="passwordConfirm"
           {...register("passwordConfirm", {
             required: "This field is required",
