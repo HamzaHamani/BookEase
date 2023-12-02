@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import mailbox from "../../public/mailbox.svg";
-
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../features/authentication/useUser";
 function Redirect() {
+  const { isAuthenticated } = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
   return (
     <div
       style={{

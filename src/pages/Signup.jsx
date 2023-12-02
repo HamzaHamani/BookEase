@@ -4,6 +4,7 @@ import SignForm from "../features/authentication/SignForm";
 import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const LoginLayout = styled.main`
   min-height: 100vh;
   display: grid;
@@ -16,7 +17,9 @@ const LoginLayout = styled.main`
 function Signup() {
   const { isAuthenticated } = useUser();
   const navigate = useNavigate();
-  if (isAuthenticated) navigate("/");
+  useEffect(() => {
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
 
   return (
     <LoginLayout>
