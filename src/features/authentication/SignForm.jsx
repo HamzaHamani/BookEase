@@ -47,7 +47,7 @@ function SignForm() {
             required: "This field is required",
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: "Please provide a valid email address",
+              message: "provide a valid email address",
             },
           })}
         />

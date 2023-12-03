@@ -28,6 +28,10 @@ function UpdateUserDataForm() {
     if (!fullName) return;
     updateUser({ fullName, avatar });
   }
+  function handleCancel() {
+    setFullName(currentFullName);
+    setAvatar(null);
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -51,10 +55,15 @@ function UpdateUserDataForm() {
         />
       </FormRow>
       <FormRow>
-        <Button type="reset" variation="secondary">
+        <Button
+          onClick={handleCancel}
+          type="reset"
+          disabled={updatingStatus == "pending"}
+          variation="secondary"
+        >
           Cancel
         </Button>
-        <Button>Update account</Button>
+        <Button disabled={updatingStatus == "pending"}>Update account</Button>
       </FormRow>
     </Form>
   );

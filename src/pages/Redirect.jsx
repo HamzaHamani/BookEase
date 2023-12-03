@@ -20,7 +20,7 @@ function Redirect() {
       }}
     >
       <h2 style={{ fontSize: "3.5rem" }}>
-        Check your Email to activate your Account
+        Check your email to activate your account.
       </h2>
 
       <div style={{ width: "20%" }}>

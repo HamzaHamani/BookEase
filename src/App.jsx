@@ -53,7 +53,16 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
-        <Toaster position="top-center" richColors />{" "}
+        <Toaster
+          toastOptions={{
+            style: {
+              fontSize: "1.4rem",
+              fontFamily: "Poppins",
+            },
+          }}
+          position="top-center"
+          richColors
+        />{" "}
       </QueryClientProvider>
     </>
   );

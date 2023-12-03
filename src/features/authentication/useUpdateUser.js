@@ -9,7 +9,7 @@ export function useUpdateUser() {
     mutationFn: updateCurrentUser,
     onSuccess: async () => {
       await query.invalidateQueries("user");
-      toast.success("User accoutn successfully updated");
+      toast.success("Your account has been successfully updated.");
       // onCloseModal?.();
     },
     onError: (err) => {
