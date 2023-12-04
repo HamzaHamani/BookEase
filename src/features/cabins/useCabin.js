@@ -6,9 +6,10 @@ export function useCabins() {
     isLoading,
     data: cabins,
     error,
+    status,
   } = useQuery({
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
-  return { isLoading, cabins, error };
+  return { isLoading, status, cabins, error };
 }
