@@ -10,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { eachDayOfInterval } from "date-fns";
 
 const StyledSalesChart = styled(DashboardBox)`
   grid-column: 1 / -1;
@@ -53,15 +54,13 @@ const fakeData = [
   { label: "Feb 06", totalSales: 1450, extrasSales: 400 },
 ];
 
-const isDarkMode = true;
-const colors = {
-  totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
-  extrasSales: { stroke: "#16a34a", fill: "#dcfce7" },
-  text: "#374151",
-  background: "#fff",
-};
-
-function SalesChart() {
+function SalesChart({ booking, numDays }) {
+  const colors = {
+    totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
+    extrasSales: { stroke: "#16a34a", fill: "#dcfce7" },
+    text: "#374151",
+    background: "#fff",
+  };
   return (
     <StyledSalesChart>
       <Heading as="h2">Sales</Heading>
@@ -72,8 +71,12 @@ function SalesChart() {
             tick={{ fill: colors.text }}
             tickLine={{ stroke: colors.text }}
           />
-          <YAxis unit={"$"} />
-          <Tooltip />
+          <YAxis
+            unit={"$"}
+            tick={{ fill: colors.text }}
+            tickLine={{ stroke: colors.text }}
+          />
+          <Tooltip contentStyle={{ backgroundColor: colors.background }} />
           <CartesianGrid strokeDasharray={"3 3"} />
           {/* <CartesianGrid /> */}
           <Area
@@ -81,6 +84,18 @@ function SalesChart() {
             type={"monotone"}
             stroke={colors.totalSales.stroke}
             fill={colors.totalSales.fill}
+            strokeWidth={2}
+            name="Total sales"
+            unit="$"
+          />
+          <Area
+            dataKey={"extrasSales"}
+            type={"monotone"}
+            stroke={colors.extrasSales.stroke}
+            fill={colors.extrasSales.fill}
+            strokeWidth={2}
+            name="Extras sales"
+            unit="$"
           />
         </AreaChart>
       </ResponsiveContainer>
