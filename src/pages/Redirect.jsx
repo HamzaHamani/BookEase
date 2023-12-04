@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import mailbox from "../../public/mailbox.svg";
+import mailbox from "../asset/mailbox.svg";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../features/authentication/useUser";
 function Redirect() {
