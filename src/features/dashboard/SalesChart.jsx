@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { eachDayOfInterval } from "date-fns";
+import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 
 const StyledSalesChart = styled(DashboardBox)`
   grid-column: 1 / -1;
@@ -55,17 +55,36 @@ const fakeData = [
 ];
 
 function SalesChart({ booking, numDays }) {
+  // console.log(booking);
   const colors = {
     totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
     extrasSales: { stroke: "#16a34a", fill: "#dcfce7" },
     text: "#374151",
     background: "#fff",
   };
+
+  const allDates = eachDayOfInterval({
+    start: subDays(new Date(), numDays - 1),
+    end: new Date(),
+  });
+
+  const data = allDates?.map((date) => {
+    return {
+      label: format(date, "MMM dd"),
+      totalSales: booking
+        ?.filter((booking) => isSameDay(date, new Date(booking.created_at)))
+        .reduce((acc, curr) => acc + curr.totalPrice, 0),
+      extrasSales: booking
+        ?.filter((booking) => isSameDay(date, new Date(booking.created_at)))
+        .reduce((acc, curr) => acc + curr.extrasPrice, 0),
+    };
+  });
+  // console.log(data);
   return (
     <StyledSalesChart>
       <Heading as="h2">Sales</Heading>
       <ResponsiveContainer height={300} width={"100%"}>
-        <AreaChart data={fakeData}>
+        <AreaChart data={data}>
           <XAxis
             dataKey="label"
             tick={{ fill: colors.text }}
