@@ -14,9 +14,11 @@ const ChartBox = styled.div`
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
+  width: 100%;
 
   padding: 2.4rem 3.2rem;
-  grid-column: 3 / span 2;
+  grid-column: 1 / -1;
+  /* grid-column: 3 / span 2; */
 
   & > *:first-child {
     margin-bottom: 1.6rem;
@@ -128,8 +130,14 @@ function DurationChart({ confirmedStays }) {
             align="right"
             width="30%"
             layout="vertical"
-            iconSize={15}
+            iconSize={30}
             iconType="circle"
+            wrapperStyle={{
+              // marginBottom: "11.6rem",
+              fontSize: "2rem",
+              fontWeight: 500,
+              lineHeight: "4.6rem",
+            }}
           />
         </PieChart>
       </ResponsiveContainer>

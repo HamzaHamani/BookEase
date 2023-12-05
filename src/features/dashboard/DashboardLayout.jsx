@@ -16,12 +16,7 @@ const StyledDashboardLayout = styled.div`
 
 function DashboardLayout() {
   const { pending, bookings } = useRecentBooking();
-  const {
-    confirmedStays,
-    stays,
-    pending: pendingStays,
-    numDays,
-  } = useRecentStays();
+  const { confirmedStays, pending: pendingStays, numDays } = useRecentStays();
 
   const { cabins, status: pending3 } = useCabins();
 
@@ -34,9 +29,9 @@ function DashboardLayout() {
         numDays={numDays}
         cabinCount={cabins.length}
       />
-      <div>activitys</div>
-      <DurationChart confirmedStays={confirmedStays} />{" "}
+      {/* <TodayActivity /> */}
       <SalesChart booking={bookings} numDays={numDays} />
+      <DurationChart confirmedStays={confirmedStays} />
     </StyledDashboardLayout>
   );
 }
