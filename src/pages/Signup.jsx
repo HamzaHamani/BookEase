@@ -27,6 +27,19 @@ function Signup() {
       <Logo />
       <Heading as={"h4"}>Create Your Account</Heading>
       <SignForm />
+      <p style={{ fontSize: "1.5rem", color: "#333" }}>
+        You have an account?{" "}
+        <span
+          onClick={() => navigate("/login")}
+          style={{
+            color: "#4B42DD",
+            fontWeight: "500",
+            cursor: "pointer",
+          }}
+        >
+          Log in.
+        </span>
+      </p>
     </LoginLayout>
   );
 }
