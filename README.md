@@ -4,6 +4,10 @@ Book Ease is an admin dashboard designed for efficient management of booking dat
 
 **Disclaimer:** This dashboard is compatible only with PCs and does not offer responsiveness for other devices.
 
+## Preview
+
+![ezgif-4-7bd512881b](https://github.com/HamzaHamani/BookEase/assets/102440542/5ef65fac-a0c1-4848-a51c-84e6b8560560)
+
 ## Features
 
 - **Statistics Visualization:** Utilizes Recharts to present data in visually appealing charts for quick analysis.
@@ -33,7 +37,7 @@ Book Ease is an admin dashboard designed for efficient management of booking dat
 ## Getting Started
 
 1. **Authentication:**
-   - Employees can sign in using their credentials provided by Supabase.
+   - Employees can sign in, log in, and log out using their provided credentials.
   
 2. **Dashboard Navigation:**
    - Use the navigation menu to explore different sections such as statistics, bookings, cabin availability, and member management.
