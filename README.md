@@ -45,7 +45,7 @@ Book Ease is an admin dashboard designed for efficient management of booking dat
 3. **Adding Members:**
    - Navigate to the designated section to add new members by providing their email and Gmail.
 
-4. **Booking Management:**
+4. **Booking Management:*
    - Monitor both confirmed and unconfirmed bookings to effectively manage reservations.
 
 5. **Statistics Visualization:**
